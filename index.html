@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EyV Solutions SpA</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- MENÚ DE NAVEGACIÓN -->
+    <header class="navbar">
+        <div class="logo-container">
+            <img src="LOGO_SII_50.jpg" alt="EyV Solutions" class="logo-img">
+            <span class="logo-text">EyV Solutions SpA</span>
+        </div>
+        <nav class="nav-menu">
+            <a href="#inicio">INICIO</a>
+            <a href="#empresa">EMPRESA</a>
+            <a href="#servicio">SERVICIO</a>
+            <a href="#contacto">CONTACTO</a>
+            <button id="btn-acceso" class="btn-cliente">Acceso Clientes</button>
+        </nav>
+    </header>
+
+    <!-- SECCIÓN DE INICIO (CARRUSEL PRINCIPAL) -->
+    <section id="inicio" class="hero-carousel">
+        <!-- Slide 1 -->
+        <div class="slide active" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('image_157b5f.jpg');">
+            <div class="carousel-content">
+                <h1>Para EyV Solutions lo más importante son nuestros Clientes.</h1>
+            </div>
+        </div>
+        <!-- Slide 2 -->
+        <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('image_157480.jpg');">
+            <div class="carousel-content">
+                <h1>En EyV Solutions creamos soluciones a la medida de nuestros Clientes.</h1>
+            </div>
+        </div>
+        <!-- Slide 3 -->
+        <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1581092334651-ddf26d9a1930?q=80&w=1200');">
+            <div class="carousel-content">
+                <h1>Con EyV Solutions los clientes logran ejecutar sus proyectos.</h1>
+            </div>
+        </div>
+
+        <!-- Controles del carrusel -->
+        <button class="carousel-btn prev" id="prevSlide">&#10094;</button>
+        <button class="carousel-btn next" id="nextSlide">&#10095;</button>
+    </section>
+
+    <!-- SECCIÓN EMPRESA -->
+    <section id="empresa" class="section-container">
+        <h2>Nuestra Empresa</h2>
+        <p>Somos una empresa que presta servicios integrales y de confianza a nuestros clientes. Estamos presentes cuando se dice "esto no se puede hacer".</p>
+        <p>Contamos con amplia experiencia en retail, construcción, montaje industrial, puesta en marcha y mantenimiento de plantas productivas.</p>
+    </section>
+
+    <!-- SECCIÓN SERVICIOS -->
+    <section id="servicio" class="section-container bg-light">
+        <h2>Servicios</h2>
+        <p>Especialistas en ingeniería, construcción, montajes industriales y optimización de procesos productivos.</p>
+    </section>
+
+    <!-- BANNER DE CLIENTES -->
+    <section class="banner-clientes">
+        <h3>Quién ha confiado en nosotros</h3>
+        <div class="logos-grid">
+            <div class="logo-item">Cliente 1</div>
+            <div class="logo-item">Cliente 2</div>
+            <div class="logo-item">Cliente 3</div>
+            <div class="logo-item">Cliente 4</div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN CONTACTO -->
+    <section id="contacto" class="section-container">
+        <h2>Contacto</h2>
+        <form class="contacto-form">
+            <input type="text" placeholder="Nombre completo" required>
+            <input type="email" placeholder="Correo electrónico" required>
+            <textarea placeholder="Déjanos tu mensaje o requerimiento" rows="5" required></textarea>
+            <button type="submit" class="btn-submit">Enviar Mensaje</button>
+        </form>
+    </section>
+
+    <!-- VENTANA MODAL: ACCESO CLIENTES -->
+    <div id="modal-login" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>Portal de Clientes</h3>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="username">Usuario:</label>
+                    <input type="text" id="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Contraseña:</label>
+                    <input type="password" id="password" required>
+                </div>
+                <button type="submit" class="btn-submit">Ingresar</button>
+            </form>
+            <div class="no-cliente-box">
+                <p>¿Aún no eres nuestro cliente?</p>
+                <a href="#contacto" id="link-contacto-desde-modal">Contáctanos aquí para solicitar acceso</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 EyV Solutions SpA. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
