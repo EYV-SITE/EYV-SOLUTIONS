@@ -77,8 +77,9 @@ body {
 
 .hero-carousel {
     position: relative;
-    height: 70vh;
-    overflow: hidden;
+    width: 100%;
+    height: calc(100vh - 70px); /* 100% del alto de la pantalla menos el menú */
+    overflow: hidden;    
 }
 
 .slide {
@@ -90,7 +91,7 @@ body {
     background-size: cover;
     background-position: center;
     opacity: 0;
-    transition: opacity 0.8s ease-in-out;
+    transition: opacity 0.65s ease-in-out;
     display: flex;
     align-items: center;
     justify-content: center;
