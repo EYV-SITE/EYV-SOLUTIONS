@@ -17,8 +17,7 @@
 body {
     color: var(--texto-oscuro);
     line-height: 1.6;
-    scroll-padding-top: 70px;
-}
+    }
 
 .navbar {
     display: flex;
