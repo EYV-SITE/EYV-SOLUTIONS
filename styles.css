@@ -17,7 +17,7 @@
 body {
     color: var(--texto-oscuro);
     line-height: 1.6;
-    }
+}
 
 .navbar {
     display: flex;
@@ -78,7 +78,7 @@ body {
 .hero-carousel {
     position: relative;
     width: 100%;
-    height: calc(100vh - 70px); /* 100% del alto de la pantalla menos el menú */
+    height: calc(100vh - 70px); /* Ocupa el alto exacto visible sin asomar contenido inferior */
     overflow: hidden;    
 }
 
@@ -134,11 +134,12 @@ body {
 .carousel-btn.prev { left: 20px; }
 .carousel-btn.next { right: 20px; }
 
-section-container {
+.section-container {
     padding: 60px 10%;
     text-align: center;
-    scroll-margin-top: 70px; /* Compensa la barra fija solo para las secciones de contenido */
+    scroll-margin-top: 70px; /* Margen de seguridad para que el menú no tape los títulos de sección */
 }
+
 .section-container h2 {
     color: var(--azul-oscuro);
     margin-bottom: 25px;
