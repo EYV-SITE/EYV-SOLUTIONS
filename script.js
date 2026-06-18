@@ -148,3 +148,86 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+// ==========================================================================
+    // NUEVA FUNCIONALIDAD INTELIGENTE Y ESTÉTICA DE CONTACTO (ACTUALIZADA)
+    // ==========================================================================
+    const formContacto = document.getElementById('form-contacto');
+    const contactoWrapper = document.getElementById('contacto-wrapper');
+    const btnSubmit = document.getElementById('btn-contacto-submit');
+    
+    // Guardamos la estructura original del formulario en una variable para poder restaurarla después
+    const estructuraOriginalFormulario = `
+        <form class="contacto-form" id="form-contacto">
+            <input type="text" id="contacto-nombre" placeholder="Nombre completo" required>
+            <input type="email" id="contacto-email" placeholder="Correo electrónico" required>
+            <textarea id="contacto-mensaje" placeholder="Déjanos tu mensaje o requerimiento" rows="5" required></textarea>
+            <button type="submit" class="btn-submit" id="btn-contacto-submit">Enviar Mensaje</button>
+        </form>
+    `;
+
+    // Función contenedora para asignar la lógica de envío al formulario (se ejecuta al inicio y al restaurar)
+    function activarLogicaFormulario() {
+        const formularioActual = document.getElementById('form-contacto');
+        const botonActual = document.getElementById('btn-contacto-submit');
+
+        if (formularioActual && contactoWrapper) {
+            formularioActual.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                const nombre = document.getElementById('contacto-nombre');
+                const email = document.getElementById('contacto-email');
+                const mensaje = document.getElementById('contacto-mensaje');
+                let formValido = true;
+
+                [nombre, email, mensaje].forEach(campo => campo.classList.remove('error-field'));
+
+                if (!nombre.value.trim()) { nombre.classList.add('error-field'); formValido = false; }
+                if (!email.value.trim() || !email.value.includes('@')) { email.classList.add('error-field'); formValido = false; }
+                if (!mensaje.value.trim()) { mensaje.classList.add('error-field'); formValido = false; }
+
+                if (formValido) {
+                    botonActual.disabled = true;
+                    botonActual.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+
+                    setTimeout(() => {
+                        contactoWrapper.innerHTML = `
+                            <div class="success-message-box">
+                                <div class="success-icon"><i class="fas fa-check-circle"></i></div>
+                                <h3>¡Mensaje recibido con éxito!</h3>
+                                <p>Nos pondremos en contacto contigo a la brevedad para abordar tus requerimientos con total profesionalismo.</p>
+                                <p style="margin-top: 10px; font-weight: 600; color: #3384b3;">Muchas gracias por escribir a EyV Solutions.</p>
+                            </div>
+                        `;
+                    }, 2000);
+                }
+            });
+
+            // Quitar error al escribir
+            const inputs = formularioActual.querySelectorAll('input, textarea');
+            inputs.forEach(input => {
+                input.addEventListener('input', () => {
+                    if (input.value.trim()) input.classList.remove('error-field');
+                });
+            });
+        }
+    }
+
+    // Inicializamos la lógica la primera vez que carga la página
+    if (formContacto) {
+        activarLogicaFormulario();
+    }
+
+    // Solución al problema de navegación: Detectar clic en el botón CONTACTO del menú o del modal
+    const enlacesContactoMenu = document.querySelectorAll('a[href="#contacto"]');
+    enlacesContactoMenu.forEach(enlace => {
+        enlace.addEventListener('click', () => {
+            // Verificamos si en pantalla está la tarjeta de éxito analizando si existe el formulario corporativo
+            const formularioExiste = document.getElementById('form-contacto');
+            if (!formularioExiste && contactoWrapper) {
+                // Si no existe el formulario (porque está el mensaje de éxito), restauramos la vista original limpia
+                contactoWrapper.innerHTML = estructuraOriginalFormulario;
+                // Reactivamos los listeners en el nuevo formulario inyectado
+                activarLogicaFormulario();
+            }
+        });
+    });
