@@ -175,12 +175,14 @@
 
     <section id="contacto" class="section-container">
         <h2>Contacto</h2>
-        <form class="contacto-form">
-            <input type="text" placeholder="Nombre completo" required>
-            <input type="email" placeholder="Correo electrónico" required>
-            <textarea placeholder="Déjanos tu mensaje o requerimiento" rows="5" required></textarea>
-            <button type="submit" class="btn-submit">Enviar Mensaje</button>
-        </form>
+        <div class="contacto-wrapper" id="contacto-wrapper">
+            <form class="contacto-form" id="form-contacto">
+                <input type="text" id="contacto-nombre" placeholder="Nombre completo" required>
+                <input type="email" id="contacto-email" placeholder="Correo electrónico" required>
+                <textarea id="contacto-mensaje" placeholder="Déjanos tu mensaje o requerimiento" rows="5" required></textarea>
+                <button type="submit" class="btn-submit" id="btn-contacto-submit">Enviar Mensaje</button>
+            </form>
+        </div>
     </section>
 
     <div id="modal-login" class="modal">
