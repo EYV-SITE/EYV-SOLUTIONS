@@ -592,3 +592,57 @@ footer {
         max-width: 90%;
     }
 }
+/* Estados dinámicos para el formulario de contacto */
+.contacto-form input.error-field, 
+.contacto-form textarea.error-field {
+    border: 2px solid #e53e3e !important;
+    background-color: #fff5f5;
+    transition: all 0.3s ease;
+}
+
+.btn-submit:disabled {
+    background-color: #a0aec0 !important;
+    cursor: not-allowed;
+}
+
+/* Tarjeta estéticamente impecable para el mensaje de éxito */
+.success-message-box {
+    background-color: var(--blanco);
+    border-top: 5px solid var(--color-equipo);
+    padding: 40px 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    max-width: 550px;
+    margin: 0 auto;
+    text-align: center;
+    animation: fadeInUp 0.5s ease forwards;
+}
+
+.success-icon {
+    font-size: 3.5rem;
+    color: var(--color-equipo);
+    margin-bottom: 20px;
+}
+
+.success-message-box h3 {
+    color: var(--azul-oscuro);
+    font-size: 1.6rem;
+    margin-bottom: 12px;
+}
+
+.success-message-box p {
+    color: #4a5568;
+    font-size: 1.05rem;
+    line-height: 1.6;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
