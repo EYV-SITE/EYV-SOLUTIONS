@@ -3,172 +3,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EyV Solutions SpA</title>
-    <!-- Librería de iconos vectoriales FontAwesome para los servicios y valores -->
+    <title>EyV Solutions SpA - Servicios Integrales e Ingeniería</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
-    
-<body id="top">
+<body>
 
-    <header class="navbar">
-        <div class="logo-container">
-            <img src="Logo.jpg" alt="EyV Solutions SpA" class="logo-img">
-            <span class="logo-text">EyV Solutions SpA</span>
+    <header class="navbar-fixed">
+        <div class="navbar-container">
+            <div class="logo-area">
+                <img src="https://raw.githubusercontent.com/eyv-site/EYV-SOLUTIONS/main/logo.png" alt="Logo EyV Solutions" class="nav-logo">
+                <span class="brand-name">EyV Solutions SpA</span>
+            </div>
+            <nav class="nav-links">
+                <a href="#inicio">INICIO</a>
+                <a href="#empresa">EMPRESA</a>
+                <a href="#servicio">SERVICIO</a>
+                <a href="#contacto">CONTACTO</a>
+                <button class="btn-acceso-nav" id="btn-acceso">Acceso Clientes</button>
+            </nav>
         </div>
-        <nav class="nav-menu">
-            <a href="#top">INICIO</a>
-            <a href="#empresa">EMPRESA</a>
-            <a href="#servicio">SERVICIO</a>
-            <a href="#contacto">CONTACTO</a>
-            <button id="btn-acceso" class="btn-cliente">Acceso Clientes</button>
-        </nav>
     </header>
 
-    <section id="inicio" class="hero-carousel">
-        <div class="slide active" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('image_157b5f.jpg');">
-            <div class="carousel-content">
-                <h1>Para EyV Solutions lo más importante son nuestros Clientes.</h1>
+    <section id="inicio" class="hero-container">
+        <div class="slide active" style="background-image: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('https://raw.githubusercontent.com/eyv-site/EYV-SOLUTIONS/main/slide1.jpg');">
+            <div class="hero-content">
+                <h1 data-webtext="PAGINA1">Para EyV Solutions lo más importante son nuestros Clientes</h1>
             </div>
         </div>
-        <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('image_157480.jpg');">
-            <div class="carousel-content">
-                <h1>En EyV Solutions creamos soluciones a la medida de nuestros Clientes.</h1>
+        <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('https://raw.githubusercontent.com/eyv-site/EYV-SOLUTIONS/main/slide2.jpg');">
+            <div class="hero-content">
+                <h1 data-webtext="PAGINA2">En EyV Solutions creamos soluciones a la medida de nuestros Clientes.</h1>
             </div>
         </div>
-        <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('Oficina.png');">
-            <div class="carousel-content">
-                <h1>Con EyV Solutions los clientes logran ejecutar sus proyectos.</h1>
+        <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('https://raw.githubusercontent.com/eyv-site/EYV-SOLUTIONS/main/slide3.jpg');">
+            <div class="hero-content">
+                <h1 data-webtext="PAGINA3">Con EyV Solutions los clientes logran ejecutar sus proyectos.</h1>
             </div>
         </div>
 
-        <button class="carousel-btn prev" id="prevSlide">&#10094;</button>
-        <button class="carousel-btn next" id="nextSlide">&#10095;</button>
+        <button class="carousel-control prev" id="prevSlide">&#10094;</button>
+        <button class="carousel-control next" id="nextSlide">&#10095;</button>
     </section>
 
-    <section id="empresa" class="company-section">
-        
-        <div class="section-container">
-            <h2>Nuestra Empresa</h2>
-            <p>Somos una empresa que presta servicios integrales y de confianza a nuestros clientes. Estamos presentes cuando se dice "esto no se puede hacer".</p>
-            <p>Contamos con amplia experiencia en retail, construcción, montaje industrial, puesta en marcha y mantenimiento de plantas productivas.</p>
+    <section id="empresa" class="section-container">
+        <h2>Nuestra Empresa</h2>
+        <div class="empresa-intro-box">
+            <p class="empresa-text" data-webtext="NUESTRA EMPRESA">Somos una empresa que presta servicios integrales y de confianza a nuestros clientes. Estamos presentes cuando se dice "esto no se puede hacer". Contamos con amplia experiencia en retail, construcción, montaje industrial, puesta en marcha y mantenimiento de plantas productivas.</p>
         </div>
 
-        <div class="strategic-pillars-container">
-            <div class="pillar-box">
-                <div class="pillar-header">MISIÓN</div>
-                <div class="pillar-body">
-                    <p>Convertirnos en el socio estratégico clave de nuestros clientes, ofreciéndoles soluciones completas y especializadas que generen valor mutuo. Todo esto impulsado por la búsqueda constante de la excelencia, la innovación permanente en nuestros servicios y poniendo siempre a las personas como el activo más importante de la organización.</p>
+        <div class="mision-vision-grid">
+            <div class="valores-card">
+                <div class="card-icon-title">
+                    <i class="fas fa-bullseye"></i>
+                    <h3>Misión</h3>
                 </div>
+                <p data-webtext="MISIÓN">Convertirnos en el socio estratégico clave de nuestros clientes, ofreciéndoles soluciones completas y specialized que generen valor mutuo. Todo esto impulsado por la búsqueda constante de la excelencia, la innovación permanente en nuestros servicios y poniendo siempre a las personas como el activo más importante de la organización.</p>
             </div>
-            <div class="pillar-box">
-                <div class="pillar-header">VISIÓN</div>
-                <div class="pillar-body">
-                    <p>Aspiramos a ser una empresa en constante crecimiento, reconocida en el sector por realizar todos nuestros proyectos con el más alto nivel, calidad impecable y total profesionalismo. Queremos entregar servicios que realmente aporten valor y brinden una respuesta ágil, oportuna y de confianza ante cualquier necesidad de nuestros clientes.</p>
+
+            <div class="valores-card">
+                <div class="card-icon-title">
+                    <i class="fas fa-eye"></i>
+                    <h3>Visión</h3>
                 </div>
+                <p data-webtext="VISIÓN">Aspiramos a ser una empresa en constante e crecimiento, reconocida en el sector por realizar todos nuestros proyectos con el más alto nivel, calidad impecable y total profesionalismo.</p>
             </div>
         </div>
 
-        <div class="values-section-title">
-            <h2>Nuestros Valores</h2>
-        </div>
-        
-        <div class="values-grid">
-            <div class="value-card card-integridad">
-                <div class="value-icon"><i class="fas fa-handshake"></i></div>
-                <h3>INTEGRIDAD</h3>
-                <p>Somos consecuentes en el cumplimiento de nuestras acciones y trabajamos con honestidad. La integridad debe estar incorporada en nuestro ADN.</p>
+        <h3 class="subtitulo-seccion">Nuestros Valores</h3>
+        <div class="valores-corporativos-grid">
+            <div class="valor-item">
+                <div class="valor-icon"><i class="fas fa-handshake"></i></div>
+                <h4>Integridad</h4>
+                <p data-webtext="INTEGRIDAD">Somos consecuentes en el cumplimiento de nuestras acciones y trabajamos con honestidad. La integridad debe estar incorporada en nuestro ADN.</p>
             </div>
-
-            <div class="value-card card-excelencia">
-                <div class="value-icon"><i class="fas fa-chart-line"></i></div>
-                <h3>EXCELENCIA EN EL TRABAJO</h3>
-                <p>Perseguimos la excelencia para llevar a cabo todo lo que hacemos, con el propósito de ejecutar con eficiencia, calidad y seguridad nuestros trabajos.</p>
+            <div class="valor-item">
+                <div class="valor-icon"><i class="fas fa-award"></i></div>
+                <h4>Excelencia en el Trabajo</h4>
+                <p data-webtext="EXCELENCIA EN EL TRABAJO">Perseguimos la excelencia para llevar a cabo todo lo que hacemos, con el propósito de ejecutar con eficiencia, calidad y seguridad nuestros trabajos.</p>
             </div>
-
-            <div class="value-card card-innovacion">
-                <div class="value-icon"><i class="fas fa-hubspot"></i></div>
-                <h3>INNOVACIÓN</h3>
-                <p>Buscamos permanentemente agregar valor a nuestros clientes, a través del desarrollo de soluciones tecnológicas.</p>
+            <div class="valor-item">
+                <div class="valor-icon"><i class="fas fa-lightbulb"></i></div>
+                <h4>Innovación</h4>
+                <p data-webtext="INNOVACIÓN">Buscando permanentemente agregar valor a nuestros clientes, a través del desarrollo de soluciones tecnológicas.</p>
             </div>
-
-            <div class="value-card card-equipo">
-                <div class="value-icon"><i class="fas fa-clipboard-check"></i></div>
-                <h3>TRABAJO EN EQUIPO</h3>
-                <p>Fomentamos el compromiso, la participación y una comunicación con buen trato, que priorice relaciones de confianza, respeto y beneficio mutuo.</p>
+            <div class="valor-item">
+                <div class="valor-icon"><i class="fas fa-users"></i></div>
+                <h4>Trabajo en Equipo</h4>
+                <p data-webtext="TRABAJO EN EQUIPO">Fomentamos el compromiso, la participación y una comunicación con buen trato, que priorice relaciones de confianza, respeto y beneficio mutuo.</p>
             </div>
         </div>
     </section>
 
-    <!-- SECCIÓN NUESTRO SERVICIO REESTRUCTURADA (image_0d8b46.png) -->
-    <section id="servicio" class="services-section bg-light">
+    <section id="servicio" class="section-container bg-light">
+        <h2>Nuestros Servicios</h2>
         
-        <!-- Bloque 1: Encabezado con Logotipo e Introducción de la Lámina -->
-        <div class="services-intro-container">
-            <div class="services-logo-side">
-                <!-- Se destaca el logotipo corporativo en formato real e independiente -->
-                <img src="Logo.jpg" alt="EyV" class="services-brand-img">
+        <div class="servicio-top-layout">
+            <div class="servicio-branding-box">
+                <img src="https://raw.githubusercontent.com/eyv-site/EYV-SOLUTIONS/main/logo.png" alt="EyV Solutions SpA" class="servicio-brand-logo">
             </div>
-            <div class="services-text-side">
-                <h2>NUESTRO SERVICIO</h2>
-                <p>Hoy en día las necesidades de las empresas, las conducen a externalizar algunas actividades que no son propias de su giro principal y es aquí cuando EyV Solutions SpA puede entregar ese servicio para apoyar en la confianza y profesionalismo.</p>
+            <div class="servicio-description-box">
+                <p class="servicio-intro-text" data-webtext="NUESTRO SERVICIO">Hoy en día las necesidades de las empresas, las conducen a externalizar algunas actividades que no son propias de su giro principal y es aquí cuando EyV Solutions SpA puede entregar ese servicio para apoyar en la confianza y profesionalismo.</p>
             </div>
         </div>
 
-        <!-- Bloque 2: Cuadrícula de 6 Servicios con Textos 100% Editables -->
-        <div class="services-grid">
-            <div class="service-card">
-                <div class="service-card-icon"><i class="fas fa-hard-hat"></i></div>
-                <p>Servicio de inspección técnica obras menores y medianas.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-card-icon"><i class="fas fa-file-signature"></i></div>
-                <p>Servicio integral de gestión de contratos.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-card-icon"><i class="fas fa-calculator"></i></div>
-                <p>Auditorías obras [Calidad, Plazo y Costos]</p>
-            </div>
-            <div class="service-card">
-                <div class="service-card-icon"><i class="fas fa-balance-scale"></i></div>
-                <p>Estimación de costos, consolidación y calce de proyectos</p>
-            </div>
-            <div class="service-card">
-                <div class="service-card-icon"><i class="fas fa-tasks"></i></div>
-                <p>Programación y control de proyectos</p>
-            </div>
-            <div class="service-card">
-                <div class="service-card-icon"><i class="fas fa-users-cog"></i></div>
-                <p>Subcontratación profesionales</p>
-            </div>
+        <div class="servicios-cards-grid">
+            <div class="servicio-card" data-webtext="SERVICIO1">Servicio de inspección técnica obras menores y medianas.</div>
+            <div class="servicio-card" data-webtext="SERVICIO2">Servicio integral de gestión de contratos.</div>
+            <div class="servicio-card" data-webtext="SERVICIO3">Auditorías obras [Calidad, Plazo y Costos]</div>
+            <div class="servicio-card" data-webtext="SERVICIO4">Estimación de costos, consolidación y calce de proyectos</div>
+            <div class="servicio-card" data-webtext="SERVICIO5">Programación y control de proyectos</div>
+            <div class="servicio-card" data-webtext="SERVICIO6">Subcontratación profesionales</div>
         </div>
+    </section>
 
-        <!-- Bloque 3: Carrusel Infinito Automatizado de Clientes en la parte inferior -->
-        <div class="trusted-section-title">
-            <h3>Quiénes han confiado en nosotros</h3>
-        </div>
-        
-        <div class="slider-container">
-            <div class="slider-track">
-                <!-- Se listan tus 8 fotos cargadas en GitHub de forma duplicada para lograr el efecto infinito -->
-                <div class="slider-slide"><img src="foto1.png" alt="The Protein Co."></div>
-                <div class="slider-slide"><img src="foto2.png" alt="ASA"></div>
-                <div class="slider-slide"><img src="foto3.png" alt="Proalsa"></div>
-                <div class="slider-slide"><img src="foto4.png" alt="Gruponexo"></div>
-                <div class="slider-slide"><img src="foto5.png" alt="Nuam Exchange"></div>
-                <div class="slider-slide"><img src="foto6.png" alt="Mass"></div>
-                <div class="slider-slide"><img src="foto7.png" alt="GMD"></div>
-                <div class="slider-slide"><img src="foto8.png" alt="Incosa"></div>
+    <section class="clientes-ticker-container">
+        <div class="ticker-wrap">
+            <div class="ticker-track">
+                <img src="https://raw.githubusercontent.com/eyv-site/EYV-SOLUTIONS/main/foto1.png" alt="Cliente 1">
+                <img src="https://raw.githubusercontent.com/eyv-site/EYV-SOLUTIONS/main/foto2.png" alt="Cliente 2">
+                <img src="https://raw.githubusercontent.com/eyv-site/EYV-SOLUTIONS/main/foto3.png" alt="Cliente 3">
+                <img src="https://raw.githubusercontent.com/eyv-site/EYV-SOLUTIONS/main/foto4.png" alt="Cliente 4">
+                <img src="https://raw.githubusercontent.com/eyv-site/EYV-SOLUTIONS/main/foto5.png" alt="Cliente 5">
+                <img src="https://raw.githubusercontent.com/eyv-site/EYV-SOLUTIONS/main/foto6.png" alt="Cliente 6">
+                <img src="https://raw.githubusercontent.com/eyv-site/EYV-SOLUTIONS/main/foto7.png" alt="Cliente 7">
+                <img src="https://raw.githubusercontent.com/eyv-site/EYV-SOLUTIONS/main/foto8.png" alt="Cliente 8">
                 
-                <!-- Copia espejo para bucle visual continuo fluido -->
-                <div class="slider-slide"><img src="foto1.png" alt="The Protein Co."></div>
-                <div class="slider-slide"><img src="foto2.png" alt="ASA"></div>
-                <div class="slider-slide"><img src="foto3.png" alt="Proalsa"></div>
-                <div class="slider-slide"><img src="foto4.png" alt="Gruponexo"></div>
-                <div class="slider-slide"><img src="foto5.png" alt="Nuam Exchange"></div>
-                <div class="slider-slide"><img src="foto6.png" alt="Mass"></div>
-                <div class="slider-slide"><img src="foto7.png" alt="GMD"></div>
-                <div class="slider-slide"><img src="foto8.png" alt="Incosa"></div>
+                <img src="https://raw.githubusercontent.com/eyv-site/EYV-SOLUTIONS/main/foto1.png" alt="Cliente 1 Dup">
+                <img src="https://raw.githubusercontent.com/eyv-site/EYV-SOLUTIONS/main/foto2.png" alt="Cliente 2 Dup">
+                <img src="https://raw.githubusercontent.com/eyv-site/EYV-SOLUTIONS/main/foto3.png" alt="Cliente 3 Dup">
+                <img src="https://raw.githubusercontent.com/eyv-site/EYV-SOLUTIONS/main/foto4.png" alt="Cliente 4 Dup">
+                <img src="https://raw.githubusercontent.com/eyv-site/EYV-SOLUTIONS/main/foto5.png" alt="Cliente 5 Dup">
+                <img src="https://raw.githubusercontent.com/eyv-site/EYV-SOLUTIONS/main/foto6.png" alt="Cliente 6 Dup">
+                <img src="https://raw.githubusercontent.com/eyv-site/EYV-SOLUTIONS/main/foto7.png" alt="Cliente 7 Dup">
+                <img src="https://raw.githubusercontent.com/eyv-site/EYV-SOLUTIONS/main/foto8.png" alt="Cliente 8 Dup">
             </div>
         </div>
     </section>
@@ -177,40 +145,36 @@
         <h2>Contacto</h2>
         <div class="contacto-wrapper" id="contacto-wrapper">
             <form class="contacto-form" id="form-contacto">
-                <input type="text" id="contacto-nombre" placeholder="Nombre completo" required>
-                <input type="email" id="contacto-email" placeholder="Correo electrónico" required>
-                <textarea id="contacto-mensaje" placeholder="Déjanos tu mensaje o requerimiento" rows="5" required></textarea>
+                <input type="text" id="contacto-nombre" name="nombre" placeholder="Nombre completo" required>
+                <input type="email" id="contacto-email" name="email" placeholder="Correo electrónico" required>
+                <textarea id="contacto-mensaje" name="mensaje" placeholder="Déjanos tu mensaje o requerimiento" rows="5" required></textarea>
                 <button type="submit" class="btn-submit" id="btn-contacto-submit">Enviar Mensaje</button>
             </form>
         </div>
     </section>
 
-    <div id="modal-login" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h3>Portal de Clientes</h3>
-            <form id="login-form">
-                <div class="form-group">
-                    <label for="username">Usuario:</label>
-                    <input type="text" id="username" required>
-                </div>
-                <div class="form-group">
-                    <label for="password">Contraseña:</label>
-                    <input type="password" id="password" required>
-                </div>
-                <button type="submit" class="btn-submit">Ingresar</button>
-            </form>
-            <div class="no-cliente-box">
-                <p>¿Aún no eres nuestro cliente?</p>
-                <a href="#contacto" id="link-contacto-desde-modal">Contáctanos aquí para solicitar acceso</a>
-            </div>
-        </div>
-    </div>
-
-    <footer>
-        <p>&copy; 2026 EyV Solutions SpA. Todos los derechos reservados.</p>
+    <footer class="main-footer">
+        <p>&copy; 2026 EyV Solutions SpA. Todos los derechos reservados. Desarrollado con excelencia profesional.</p>
     </footer>
 
-    <script src="script.js"></script>
-</body>
-</html>
+    <div class="modal-overlay" id="modal-login">
+        <div class="modal-box">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header-logo">
+                <img src="https://raw.githubusercontent.com/eyv-site/EYV-SOLUTIONS/main/logo.png" alt="Logo EyV Solutions" class="modal-logo-img">
+                <h3>Portal Privado de Clientes</h3>
+            </div>
+            <form class="modal-form">
+                <div class="input-group">
+                    <label for="modal-user">Nombre de Usuario</label>
+                    <input type="text" id="modal-user" placeholder="Ej: rut o usuario corporativo" required>
+                </div>
+                <div class="input-group">
+                    <label for="modal-pass">Contraseña de Acceso</label>
+                    <input type="password" id="modal-pass" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn-modal-login">Ingresar al Portal</button>
+                <p class="modal-help-text">¿No posees una cuenta o necesitas soporte técnico? <a href="#contacto" id="link-contacto-desde-modal">Contáctanos aquí</a></p>
+            </form>
+        </div>
+    </div>
