@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EyV Solutions SpA</title>
-    <!-- Librería de iconos vectoriales FontAwesome para los servicios y valores -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -50,7 +49,7 @@
         
         <div class="section-container">
             <h2>Nuestra Empresa</h2>
-            <p>Somos una empresa que presta servicios integrales y de confianza a nuestros clientes. Estamos presentes cuando se dice "esto no se puede hacer".</p>
+            <p>Somos una empresa que presta servicios integrales y de confianza a nuestros clientes. Estamos presentes when se dice "esto no se puede hacer".</p>
             <p>Contamos con amplia experiencia en retail, construcción, montaje industrial, puesta en marcha y mantenimiento de plantas productivas.</p>
         </div>
 
@@ -100,13 +99,10 @@
         </div>
     </section>
 
-    <!-- SECCIÓN NUESTRO SERVICIO REESTRUCTURADA (image_0d8b46.png) -->
     <section id="servicio" class="services-section bg-light">
         
-        <!-- Bloque 1: Encabezado con Logotipo e Introducción de la Lámina -->
         <div class="services-intro-container">
             <div class="services-logo-side">
-                <!-- Se destaca el logotipo corporativo en formato real e independiente -->
                 <img src="Logo.jpg" alt="EyV" class="services-brand-img">
             </div>
             <div class="services-text-side">
@@ -115,7 +111,6 @@
             </div>
         </div>
 
-        <!-- Bloque 2: Cuadrícula de 6 Servicios con Textos 100% Editables -->
         <div class="services-grid">
             <div class="service-card">
                 <div class="service-card-icon"><i class="fas fa-hard-hat"></i></div>
@@ -143,14 +138,12 @@
             </div>
         </div>
 
-        <!-- Bloque 3: Carrusel Infinito Automatizado de Clientes en la parte inferior -->
         <div class="trusted-section-title">
             <h3>Quiénes han confiado en nosotros</h3>
         </div>
         
         <div class="slider-container">
             <div class="slider-track">
-                <!-- Se listan tus 8 fotos cargadas en GitHub de forma duplicada para lograr el efecto infinito -->
                 <div class="slider-slide"><img src="foto1.png" alt="The Protein Co."></div>
                 <div class="slider-slide"><img src="foto2.png" alt="ASA"></div>
                 <div class="slider-slide"><img src="foto3.png" alt="Proalsa"></div>
@@ -160,7 +153,6 @@
                 <div class="slider-slide"><img src="foto7.png" alt="GMD"></div>
                 <div class="slider-slide"><img src="foto8.png" alt="Incosa"></div>
                 
-                <!-- Copia espejo para bucle visual continuo fluido -->
                 <div class="slider-slide"><img src="foto1.png" alt="The Protein Co."></div>
                 <div class="slider-slide"><img src="foto2.png" alt="ASA"></div>
                 <div class="slider-slide"><img src="foto3.png" alt="Proalsa"></div>
@@ -188,21 +180,30 @@
     <div id="modal-login" class="modal">
         <div class="modal-content">
             <span class="close-modal">&times;</span>
-            <h3>Portal de Clientes</h3>
-            <form id="login-form">
-                <div class="form-group">
-                    <label for="username">Usuario:</label>
-                    <input type="text" id="username" required>
+            <h3 style="color: #1a365d; text-align: center; margin-bottom: 20px;">Portal de Clientes</h3>
+            
+            <div id="modal-dinamico-content">
+                <form id="form-login-cliente">
+                    <div class="form-group">
+                        <label for="modal-user">Usuario:</label>
+                        <input type="text" id="modal-user" required placeholder="Nombre de usuario">
+                    </div>
+                    <div class="form-group">
+                        <label for="modal-pass">Contraseña:</label>
+                        <input type="password" id="modal-pass" required placeholder="••••••••">
+                    </div>
+                    
+                    <div id="login-error-message" style="color: #e53e3e; font-size: 0.85rem; display: none; text-align: center; font-weight: 600; margin-bottom: 15px;">
+                        Usuario o contraseña incorrectos.
+                    </div>
+                    
+                    <button type="submit" id="btn-login-submit" class="btn-submit">Ingresar</button>
+                </form>
+                
+                <div class="no-cliente-box">
+                    <p>¿Aún no eres nuestro cliente?</p>
+                    <a href="#contacto" id="link-contacto-desde-modal">Contáctanos aquí para solicitar acceso</a>
                 </div>
-                <div class="form-group">
-                    <label for="password">Contraseña:</label>
-                    <input type="password" id="password" required>
-                </div>
-                <button type="submit" class="btn-submit">Ingresar</button>
-            </form>
-            <div class="no-cliente-box">
-                <p>¿Aún no eres nuestro cliente?</p>
-                <a href="#contacto" id="link-contacto-desde-modal">Contáctanos aquí para solicitar acceso</a>
             </div>
         </div>
     </div>
@@ -212,5 +213,82 @@
     </footer>
 
     <script src="script.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const formLogin = document.getElementById('form-login-cliente');
+            const modalDinamicoContent = document.getElementById('modal-dinamico-content');
+            const loginErrorMessage = document.getElementById('login-error-message');
+            const btnLoginSubmit = document.getElementById('btn-login-submit');
+
+            // URL definitiva de tu Web App en Google Apps Script (Versión 2)
+            const urlGoogleSheets = "https://script.google.com/macros/s/AKfycbyvI0PQuL9qT89KU5YgvlBNyOhoXxjfgw8w2aqH3WVBkGDgORf5y0EBsSefx2n8yxi/exec";
+
+            if (formLogin) {
+                formLogin.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const usuarioVal = document.getElementById('modal-user').value.trim();
+                    const claveVal = document.getElementById('modal-pass').value.trim();
+                    
+                    // Bloquear botón e iniciar modo carga
+                    loginErrorMessage.style.display = 'none';
+                    btnLoginSubmit.disabled = true;
+                    btnLoginSubmit.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Validando...';
+                    
+                    // Armamos los parámetros para el llamado GET de tu script
+                    const urlConParametros = `${urlGoogleSheets}?usuario=${encodeURIComponent(usuarioVal)}&clave=${encodeURIComponent(claveVal)}`;
+                    
+                    fetch(urlConParametros)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            btnLoginSubmit.innerHTML = 'Acceso Autorizado...';
+                            
+                            // Si en tu columna D no pusiste nada, hereda la home general de OneDrive por seguridad
+                            const finalLink = data.redirectUrl ? data.redirectUrl : "https://onedrive.live.com";
+                            
+                            // Reemplazamos el login por los iconos de repositorio limpio
+                            setTimeout(() => {
+                                modalDinamicoContent.innerHTML = `
+                                    <div style="text-align: center; padding: 15px 0;">
+                                        <h4 style="color: #1a365d; margin-bottom: 12px; font-weight: 700;">
+                                            <i class="fas fa-folder-open" style="color: #ecc94b; margin-right: 8px;"></i> Repositorio de Informes
+                                        </h4>
+                                        <p style="font-size: 0.85rem; color: #4a5568; margin-bottom: 20px;">
+                                            Bienvenido. Haga clic en el ícono para abrir su repositorio documental privado de OneDrive de forma segura:
+                                        </p>
+                                        
+                                        <div style="display: flex; justify-content: center; padding: 10px;">
+                                            <a href="${finalLink}" target="_blank" style="text-decoration: none; display: flex; flex-direction: column; align-items: center; width: 140px; background: #ffffff; padding: 15px; border-radius: 8px; border: 1px solid #cbd5e0; box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: transform 0.2s;">
+                                                <i class="fas fa-file-pdf" style="font-size: 3.2rem; color: #e53e3e; margin-bottom: 10px;"></i>
+                                                <span style="font-size: 0.78rem; color: #2d3748; font-weight: 600; text-align: center; display: block; word-break: break-all;">
+                                                    Ver_Informes.pdf
+                                                </span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                `;
+                            }, 600);
+                            
+                        } else {
+                            // En caso de fallar credenciales o inactivo
+                            btnLoginSubmit.disabled = false;
+                            btnLoginSubmit.innerHTML = 'Ingresar';
+                            loginErrorMessage.textContent = data.error || 'Usuario o contraseña incorrectos.';
+                            loginErrorMessage.style.display = 'block';
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error de login:', error);
+                        btnLoginSubmit.disabled = false;
+                        btnLoginSubmit.innerHTML = 'Ingresar';
+                        loginErrorMessage.textContent = 'Error de comunicación con el servidor.';
+                        loginErrorMessage.style.display = 'block';
+                    });
+                });
+            }
+        });
+    </script>
 </body>
 </html>
