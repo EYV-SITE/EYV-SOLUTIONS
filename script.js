@@ -35,15 +35,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // ==========================================================================
-    // 🔐 LÓGICA DEL MODAL ACCESO CLIENTES (Optimizado para Google Sheets)
+    // 🔐 LÓGICA DEL MODAL ACCESO CLIENTES (Centrado Correctamente)
     // ==========================================================================
     const modal = document.getElementById('modal-login');
     const btnAcceso = document.getElementById('btn-acceso');
     const closeX = document.querySelector('.close-modal');
     const linkContacto = document.getElementById('link-contacto-desde-modal');
 
-    // Cambiado a 'block' para evitar conflictos de renderizado con el backend inyectado
-    if (btnAcceso && modal) { btnAcceso.addEventListener('click', () => { modal.style.display = 'block'; }); }
+    if (btnAcceso && modal) { btnAcceso.addEventListener('click', () => { modal.style.display = 'flex'; }); }
     if (closeX && modal) { closeX.addEventListener('click', () => { modal.style.display = 'none'; }); }
     
     window.addEventListener('click', (e) => {
@@ -53,7 +52,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (linkContacto && modal) {
         linkContacto.addEventListener('click', () => { modal.style.display = 'none'; });
     }
-
 
     // ==========================================================================
     // 📩 FUNCIONALIDAD DE CONTACTO REAL CON ENLACE FORMSPREE
