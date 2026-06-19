@@ -5,7 +5,392 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EyV Solutions SpA - Servicios Integrales e Ingeniería</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
+    
+    <style>
+        :root {
+            --primary-color: #1a365d;   /* Azul Corporativo Oscuro */
+            --secondary-color: #2b6cb0; /* Azul Flexible */
+            --accent-color: #319795;    /* Verde Azulado de Innovación */
+            --light-bg: #f7fafc;        /* Fondo claro grisáceo */
+            --dark-text: #2d3748;       /* Texto principal oscurecido */
+            --white: #ffffff;
+            --transition-fast: opacity 0.4s ease-in-out;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            color: var(--dark-text);
+            background-color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* 📌 MENÚ DE NAVEGACIÓN SUPERIOR FIJO */
+        .navbar-fixed {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(26, 54, 93, 0.96);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+            z-index: 1000;
+        }
+
+        .navbar-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .nav-logo {
+            height: 45px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .brand-name {
+            color: var(--white);
+            font-weight: bold;
+            font-size: 1.2rem;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: #e2e8f0;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #90cdf4;
+        }
+
+        .btn-acceso-nav {
+            background-color: var(--accent-color);
+            color: var(--white);
+            border: none;
+            padding: 8px 16px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .btn-acceso-nav:hover {
+            background-color: #287e7c;
+            transform: translateY(-1px);
+        }
+
+        /* 🎠 SECCIÓN INICIO: HERO CAROUSEL AUTOMÁTICO */
+        .hero-container {
+            position: relative;
+            height: 75vh;
+            margin-top: 65px;
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0;
+            transition: var(--transition-fast);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+        }
+
+        .slide.active {
+            opacity: 1;
+            z-index: 2;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            padding: 0 40px;
+            text-align: center;
+        }
+
+        .hero-content h1 {
+            color: var(--white);
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+            line-height: 1.3;
+        }
+
+        .carousel-control {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.4);
+            color: var(--white);
+            border: none;
+            width: 45px;
+            height: 45px;
+            font-size: 1.2rem;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 10;
+            transition: background-color 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-control:hover { background-color: rgba(0, 0, 0, 0.7); }
+        .carousel-control.prev { left: 20px; }
+        .carousel-control.next { right: 20px; }
+
+        /* 📦 SECCIONES CONTENEDORAS COMUNES */
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .bg-light {
+            background-color: var(--light-bg);
+        }
+
+        h2 {
+            font-size: 2rem;
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            font-weight: bold;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background-color: var(--accent-color);
+            border-radius: 2px;
+        }
+
+        /* 🏢 ESTRUCTURA SECCIÓN EMPRESA */
+        .empresa-intro-box {
+            background-color: var(--light-bg);
+            padding: 30px;
+            border-radius: 6px;
+            border-left: 5px solid var(--primary-color);
+            margin-bottom: 40px;
+        }
+
+        .empresa-text {
+            font-size: 1.1rem;
+            color: var(--dark-text);
+            text-align: justify;
+        }
+
+        .mision-vision-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .valores-card {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 6px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--secondary-color);
+        }
+
+        .card-icon-title {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .card-icon-title i { font-size: 1.5rem; color: var(--secondary-color); }
+        .card-icon-title h3 { font-size: 1.3rem; color: var(--primary-color); }
+        .valores-card p { text-align: justify; font-size: 0.95rem; }
+
+        .subtitulo-seccion {
+            text-align: center;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
+
+        .valores-corporativos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .valor-item {
+            background-color: var(--white);
+            padding: 25px 20px;
+            border-radius: 6px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            border: 1px solid #edf2f7;
+        }
+
+        .valor-icon { font-size: 2rem; color: var(--accent-color); margin-bottom: 15px; }
+        .valor-item h4 { color: var(--primary-color); margin-bottom: 10px; font-size: 1.1rem; }
+        .valor-item p { font-size: 0.88rem; color: #4a5568; }
+
+        /* 🛠️ ESTRUCTURA SECCIÓN SERVICIO */
+        .servicio-top-layout {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .servicio-branding-box {
+            flex: 1;
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .servicio-brand-logo { max-height: 100px; width: auto; object-fit: contain; }
+        .servicio-description-box { flex: 2; }
+        .servicio-intro-text { font-size: 1.1rem; text-align: justify; }
+
+        .servicios-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .servicio-card {
+            background-color: var(--white);
+            padding: 35px 25px;
+            border-radius: 6px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+            border-bottom: 4px solid var(--accent-color);
+            font-weight: 600;
+            color: var(--primary-color);
+            font-size: 1.05rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .servicio-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+        }
+
+        /* 🤝 CARRUSEL INFINITO DE LOGOS */
+        .clientes-ticker-container {
+            background-color: var(--white);
+            padding: 30px 0;
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .ticker-wrap { width: 100%; overflow: hidden; }
+        .ticker-track { display: flex; width: max-content; gap: 60px; animation: scrollTicker 25s linear infinite; }
+        .ticker-track img { height: 50px; width: auto; object-fit: contain; filter: grayscale(100%); opacity: 0.6; }
+
+        @keyframes scrollTicker {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-50% - 30px)); }
+        }
+
+        /* 📩 SECCIÓN CONTACTO */
+        .contacto-wrapper {
+            max-width: 700px;
+            margin: 0 auto;
+            background-color: var(--light-bg);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .contacto-form { display: flex; flex-direction: column; gap: 20px; }
+        .contacto-form input, .contacto-form textarea {
+            width: 100%; padding: 12px 16px; border: 1px solid #cbd5e0; border-radius: 4px; font-size: 1rem;
+        }
+
+        .btn-submit {
+            background-color: var(--primary-color); color: var(--white); border: none; padding: 14px;
+            font-size: 1.1rem; font-weight: bold; border-radius: 4px; cursor: pointer;
+        }
+
+        .main-footer { background-color: var(--primary-color); color: #cbd5e0; text-align: center; padding: 25px 20px; font-size: 0.9rem; }
+
+        /* 🔐 MODAL DE ACCESO CLIENTES */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.6);
+            display: none; align-items: center; justify-content: center; z-index: 2000; padding: 20px;
+        }
+
+        .modal-box {
+            background-color: var(--white); width: 100%; max-width: 450px; border-radius: 8px; padding: 35px 30px; position: relative;
+        }
+
+        .close-modal { position: absolute; top: 15px; right: 20px; font-size: 1.8rem; color: #a0aec0; cursor: pointer; }
+        .modal-header-logo { text-align: center; margin-bottom: 25px; }
+        .modal-logo-img { height: 55px; width: auto; margin-bottom: 10px; }
+        .modal-header-logo h3 { color: var(--primary-color); font-size: 1.3rem; font-weight: bold; }
+        .modal-form { display: flex; flex-direction: column; gap: 18px; }
+        .input-group { display: flex; flex-direction: column; gap: 6px; }
+        .input-group label { font-size: 0.88rem; font-weight: 600; color: #4a5568; }
+        .input-group input { padding: 10px 14px; border: 1px solid #cbd5e0; border-radius: 4px; }
+        .btn-modal-login { background-color: var(--accent-color); color: var(--white); border: none; padding: 12px; font-weight: bold; border-radius: 4px; cursor: pointer; }
+        .modal-help-text { font-size: 0.82rem; color: #718096; text-align: center; }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero-content h1 { font-size: 1.8rem; }
+            .mision-vision-grid { grid-template-columns: 1fr; }
+            .servicio-top-layout { flex-direction: column; gap: 20px; }
+        }
+    </style>
 </head>
 <body>
 
@@ -97,7 +482,6 @@
 
     <section id="servicio" class="section-container bg-light">
         <h2>Nuestros Servicios</h2>
-        
         <div class="servicio-top-layout">
             <div class="servicio-branding-box">
                 <img src="https://raw.githubusercontent.com/eyv-site/EYV-SOLUTIONS/main/logo.png" alt="EyV Solutions SpA" class="servicio-brand-logo">
@@ -111,7 +495,7 @@
             <div class="servicio-card">Servicio de inspección técnica obras menores y medianas.</div>
             <div class="servicio-card">Servicio integral de gestión de contratos.</div>
             <div class="servicio-card">Auditorías obras [Calidad, Plazo y Costos]</div>
-            <div class="servicio-card">Estimación de costos, consolidation y calce de proyectos</div>
+            <div class="servicio-card">Estimación de costos, consolidación y calce de proyectos</div>
             <div class="servicio-card">Programación y control de proyectos</div>
             <div class="servicio-card">Subcontratación profesionales</div>
         </div>
@@ -174,7 +558,6 @@
                     <input type="password" id="modal-pass" placeholder="••••••••" required>
                 </div>
                 <button type="submit" class="btn-modal-login">Ingresar al Portal</button>
-                <p class="modal-help-text">¿No posees una cuenta o necesitas soporte técnico? <a href="#contacto" id="link-contacto-desde-modal">Contáctanos aquí</a></p>
             </form>
         </div>
     </div>
@@ -216,7 +599,6 @@
         const modal = document.getElementById('modal-login');
         const btnAcceso = document.getElementById('btn-acceso');
         const closeX = document.querySelector('.close-modal');
-        const linkContacto = document.getElementById('link-contacto-desde-modal');
 
         if (btnAcceso && modal) { btnAcceso.addEventListener('click', () => { modal.style.display = 'flex'; }); }
         if (closeX && modal) { closeX.addEventListener('click', () => { modal.style.display = 'none'; }); }
@@ -225,73 +607,51 @@
             if (modal && e.target === modal) { modal.style.display = 'none'; }
         });
 
-        if (linkContacto && modal) {
-            linkContacto.addEventListener('click', () => { modal.style.display = 'none'; });
-        }
-
         // FUNCIONALIDAD DE CONTACTO REAL CON ENLACE FORMSPREE
         const formContacto = document.getElementById('form-contacto');
         const contactoWrapper = document.getElementById('contacto-wrapper');
         const urlFormspree = "https://formspree.io/f/mjgddzrn"; 
 
-        function activarLogicaFormulario() {
-            const formularioActual = document.getElementById('form-contacto');
-            const botonActual = document.getElementById('btn-contacto-submit');
+        if (formContacto && contactoWrapper) {
+            formContacto.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const nombre = document.getElementById('contacto-nombre').value;
+                const email = document.getElementById('contacto-email').value;
+                const mensaje = document.getElementById('contacto-mensaje').value;
+                const botonActual = document.getElementById('btn-contacto-submit');
 
-            if (formularioActual && contactoWrapper) {
-                formularioActual.addEventListener('submit', function(e) {
-                    e.preventDefault();
+                botonActual.disabled = true;
+                botonActual.innerHTML = 'Enviando...';
 
-                    const nombre = document.getElementById('contacto-nombre');
-                    const email = document.getElementById('contacto-email');
-                    const mensaje = document.getElementById('contacto-mensaje');
-                    let formValido = true;
+                const datosFormulario = new FormData();
+                datosFormulario.append('Nombre', nombre);
+                datosFormulario.append('Correo', email);
+                datosFormulario.append('Mensaje', mensaje);
 
-                    [nombre, email, mensaje].forEach(campo => campo.classList.remove('error-field'));
-
-                    if (!nombre.value.trim()) { nombre.classList.add('error-field'); formValido = false; }
-                    if (!email.value.trim() || !email.value.includes('@')) { email.classList.add('error-field'); formValido = false; }
-                    if (!mensaje.value.trim()) { mensaje.classList.add('error-field'); formValido = false; }
-
-                    if (formValido) {
-                        botonActual.disabled = true;
-                        botonActual.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
-
-                        const datosFormulario = new FormData();
-                        datosFormulario.append('Nombre', nombre.value);
-                        datosFormulario.append('Correo', email.value);
-                        datosFormulario.append('Mensaje', mensaje.value);
-
-                        fetch(urlFormspree, {
-                            method: 'POST',
-                            body: datosFormulario,
-                            headers: { 'Accept': 'application/json' }
-                        })
-                        .then(response => {
-                            if (response.ok) {
-                                contactoWrapper.innerHTML = `
-                                    <div class="success-message-box">
-                                        <div class="success-icon"><i class="fas fa-check-circle"></i></div>
-                                        <h3>¡Mensaje recibido con éxito!</h3>
-                                        <p>Nos pondremos en contacto contigo a la brevedad para abordar tus requerimientos con total profesionalismo.</p>
-                                        <p style="margin-top: 10px; font-weight: 600; color: #3384b3;">Muchas gracias por escribir a EyV Solutions.</p>
-                                    </div>
-                                `;
-                            } else {
-                                throw new Error('Error en el servidor');
-                            }
-                        })
-                        .catch(error => {
-                            botonActual.disabled = false;
-                            botonActual.innerHTML = 'Enviar Mensaje';
-                            alert('Hubo un inconveniente de conexión. Por favor, inténtalo nuevamente.');
-                        });
+                fetch(urlFormspree, {
+                    method: 'POST',
+                    body: datosFormulario,
+                    headers: { 'Accept': 'application/json' }
+                })
+                .then(response => {
+                    if (response.ok) {
+                        contactoWrapper.innerHTML = `
+                            <div style="text-align:center; padding: 20px;">
+                                <h3 style="color:#1a365d;">¡Mensaje enviado con éxito!</h3>
+                                <p>Nos comunicaremos con usted a la brevedad.</p>
+                            </div>
+                        `;
+                    } else {
+                        throw new Error();
                     }
+                })
+                .catch(() => {
+                    botonActual.disabled = false;
+                    botonActual.innerHTML = 'Enviar Mensaje';
+                    alert('Error al enviar. Inténtelo nuevamente.');
                 });
-            }
+            });
         }
-
-        if (formContacto) { activarLogicaFormulario(); }
     });
     </script>
 </body>
