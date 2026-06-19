@@ -1,211 +1,184 @@
-document.addEventListener('DOMContentLoaded', () => {
-    
-    // ==========================================================================
-    // 🌐 INTEGRACIÓN DINÁMICA: LECTURA DE TEXTOS, FUENTES Y TAMAÑOS DESDE ONEDRIVE
-    // ==========================================================================
-    
-    // Tu enlace de descarga directa convertido de OneDrive
-    const urlOneDriveExcel = "https://onedrive.live.com/download?resid=FA856147E6BB0CF7&authkey=!IDDye3r7-wtHQYjL&em=2&app=Excel";
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EyV Solutions SpA - Servicios Integrales e Ingeniería</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
 
-    function cargarTextosDesdeOneDrive() {
-        fetch(urlOneDriveExcel)
-            .then(response => {
-                if (!response.ok) throw new Error("No se pudo conectar con OneDrive");
-                return response.text(); // Leemos el archivo Excel transformado en texto plano (CSV)
-            })
-            .then(csvTexto => {
-                // Separamos el documento en líneas/filas
-                const filas = csvTexto.split(/\r?\n/);
+    <header class="navbar-fixed">
+        <div class="navbar-container">
+            <div class="logo-area">
+                <img src="https://raw.githubusercontent.com/eyv-site/EYV-SOLUTIONS/main/logo.png" alt="Logo EyV Solutions" class="nav-logo">
+                <span class="brand-name">EyV Solutions SpA</span>
+            </div>
+            <nav class="nav-links">
+                <a href="#inicio">INICIO</a>
+                <a href="#empresa">EMPRESA</a>
+                <a href="#servicio">SERVICIO</a>
+                <a href="#contacto">CONTACTO</a>
+                <button class="btn-acceso-nav" id="btn-acceso">Acceso Clientes</button>
+            </nav>
+        </div>
+    </header>
+
+    <section id="inicio" class="hero-container">
+        <div class="slide active" style="background-image: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('https://raw.githubusercontent.com/eyv-site/EYV-SOLUTIONS/main/slide1.jpg');">
+            <div class="hero-content">
+                <h1 data-webtext="PAGINA1">Para EyV Solutions lo más importante son nuestros Clientes</h1>
+            </div>
+        </div>
+        <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('https://raw.githubusercontent.com/eyv-site/EYV-SOLUTIONS/main/slide2.jpg');">
+            <div class="hero-content">
+                <h1 data-webtext="PAGINA2">En EyV Solutions creamos soluciones a la medida de nuestros Clientes.</h1>
+            </div>
+        </div>
+        <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('https://raw.githubusercontent.com/eyv-site/EYV-SOLUTIONS/main/slide3.jpg');">
+            <div class="hero-content">
+                <h1 data-webtext="PAGINA3">Con EyV Solutions los clientes logran ejecutar sus proyectos.</h1>
+            </div>
+        </div>
+
+        <button class="carousel-control prev" id="prevSlide">&#10094;</button>
+        <button class="carousel-control next" id="nextSlide">&#10095;</button>
+    </section>
+
+    <section id="empresa" class="section-container">
+        <h2>Nuestra Empresa</h2>
+        <div class="empresa-intro-box">
+            <p class="empresa-text" data-webtext="NUESTRA EMPRESA">Somos una empresa que presta servicios integrales y de confianza a nuestros clientes. Estamos presentes cuando se dice "esto no se puede hacer". Contamos con amplia experiencia en retail, construcción, montaje industrial, puesta en marcha y mantenimiento de plantas productivas.</p>
+        </div>
+
+        <div class="mision-vision-grid">
+            <div class="valores-card">
+                <div class="card-icon-title">
+                    <i class="fas fa-bullseye"></i>
+                    <h3>Misión</h3>
+                </div>
+                <p data-webtext="MISIÓN">Convertirnos en el socio estratégico clave de nuestros clientes, ofreciéndoles soluciones completas y especializadas que generen valor mutuo. Todo esto impulsado por la búsqueda constante de la excelencia, la innovación permanente en nuestros servicios y poniendo siempre a las personas como el activo más importante de la organización.</p>
+            </div>
+
+            <div class="valores-card">
+                <div class="card-icon-title">
+                    <i class="fas fa-eye"></i>
+                    <h3>Visión</h3>
+                </div>
+                <p data-webtext="VISIÓN">Aspiramos a ser una empresa en constante e crecimiento, reconocida en el sector por realizar todos nuestros proyectos con el más alto nivel, calidad impecable y total profesionalismo.</p>
+            </div>
+        </div>
+
+        <h3 class="subtitulo-seccion">Nuestros Valores</h3>
+        <div class="valores-corporativos-grid">
+            <div class="valor-item">
+                <div class="valor-icon"><i class="fas fa-handshake"></i></div>
+                <h4>Integridad</h4>
+                <p data-webtext="INTEGRIDAD">Somos consecuentes en el cumplimiento de nuestras acciones y trabajamos con honestidad. La integridad debe estar incorporada en nuestro ADN.</p>
+            </div>
+            <div class="valor-item">
+                <div class="valor-icon"><i class="fas fa-award"></i></div>
+                <h4>Excelencia en el Trabajo</h4>
+                <p data-webtext="EXCELENCIA EN EL TRABAJO">Perseguimos la excelencia para llevar a cabo todo lo que hacemos, con el propósito de ejecutar con eficiencia, calidad y seguridad nuestros trabajos.</p>
+            </div>
+            <div class="valor-item">
+                <div class="valor-icon"><i class="fas fa-lightbulb"></i></div>
+                <h4>Innovación</h4>
+                <p data-webtext="INNOVACIÓN">Buscando permanentemente agregar valor a nuestros clientes, a través del desarrollo de soluciones tecnológicas.</p>
+            </div>
+            <div class="valor-item">
+                <div class="valor-icon"><i class="fas fa-users"></i></div>
+                <h4>Trabajo en Equipo</h4>
+                <p data-webtext="TRABAJO EN EQUIPO">Fomentamos el compromiso, la participación y una comunicación con buen trato, que priorice relaciones de confianza, respeto y beneficio mutuo.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="servicio" class="section-container bg-light">
+        <h2>Nuestros Servicios</h2>
+        
+        <div class="servicio-top-layout">
+            <div class="servicio-branding-box">
+                <img src="https://raw.githubusercontent.com/eyv-site/EYV-SOLUTIONS/main/logo.png" alt="EyV Solutions SpA" class="servicio-brand-logo">
+            </div>
+            <div class="servicio-description-box">
+                <p class="servicio-intro-text" data-webtext="NUESTRO SERVICIO">Hoy en día las necesidades de las empresas, las conducen a externalizar algunas actividades que no son propias de su giro principal y es aquí cuando EyV Solutions SpA puede entregar ese servicio para apoyar en la confianza y profesionalismo.</p>
+            </div>
+        </div>
+
+        <div class="servicios-cards-grid">
+            <div class="servicio-card" data-webtext="SERVICIO1">Servicio de inspección técnica obras menores y medianas.</div>
+            <div class="servicio-card" data-webtext="SERVICIO2">Servicio integral de gestión de contratos.</div>
+            <div class="servicio-card" data-webtext="SERVICIO3">Auditorías obras [Calidad, Plazo y Costos]</div>
+            <div class="servicio-card" data-webtext="SERVICIO4">Estimación de costos, consolidación y calce de proyectos</div>
+            <div class="servicio-card" data-webtext="SERVICIO5">Programación y control de proyectos</div>
+            <div class="servicio-card" data-webtext="SERVICIO6">Subcontratación profesionales</div>
+        </div>
+    </section>
+
+    <section class="clientes-ticker-container">
+        <div class="ticker-wrap">
+            <div class="ticker-track">
+                <img src="https://raw.githubusercontent.com/eyv-site/EYV-SOLUTIONS/main/foto1.png" alt="Cliente 1">
+                <img src="https://raw.githubusercontent.com/eyv-site/EYV-SOLUTIONS/main/foto2.png" alt="Cliente 2">
+                <img src="https://raw.githubusercontent.com/eyv-site/EYV-SOLUTIONS/main/foto3.png" alt="Cliente 3">
+                <img src="https://raw.githubusercontent.com/eyv-site/EYV-SOLUTIONS/main/foto4.png" alt="Cliente 4">
+                <img src="https://raw.githubusercontent.com/eyv-site/EYV-SOLUTIONS/main/foto5.png" alt="Cliente 5">
+                <img src="https://raw.githubusercontent.com/eyv-site/EYV-SOLUTIONS/main/foto6.png" alt="Cliente 6">
+                <img src="https://raw.githubusercontent.com/eyv-site/EYV-SOLUTIONS/main/foto7.png" alt="Cliente 7">
+                <img src="https://raw.githubusercontent.com/eyv-site/EYV-SOLUTIONS/main/foto8.png" alt="Cliente 8">
                 
-                // Recorremos cada fila saltándonos la primera (encabezados)
-                for (let i = 1; i < filas.length; i++) {
-                    const fila = filas[i].trim();
-                    if (!fila) continue; // Si la fila está vacía, la salta
+                <img src="https://raw.githubusercontent.com/eyv-site/EYV-SOLUTIONS/main/foto1.png" alt="Cliente 1 Dup">
+                <img src="https://raw.githubusercontent.com/eyv-site/EYV-SOLUTIONS/main/foto2.png" alt="Cliente 2 Dup">
+                <img src="https://raw.githubusercontent.com/eyv-site/EYV-SOLUTIONS/main/foto3.png" alt="Cliente 3 Dup">
+                <img src="https://raw.githubusercontent.com/eyv-site/EYV-SOLUTIONS/main/foto4.png" alt="Cliente 4 Dup">
+                <img src="https://raw.githubusercontent.com/eyv-site/EYV-SOLUTIONS/main/foto5.png" alt="Cliente 5 Dup">
+                <img src="https://raw.githubusercontent.com/eyv-site/EYV-SOLUTIONS/main/foto6.png" alt="Cliente 6 Dup">
+                <img src="https://raw.githubusercontent.com/eyv-site/EYV-SOLUTIONS/main/foto7.png" alt="Cliente 7 Dup">
+                <img src="https://raw.githubusercontent.com/eyv-site/EYV-SOLUTIONS/main/foto8.png" alt="Cliente 8 Dup">
+            </div>
+        </div>
+    </section>
 
-                    // Expresión regular inteligente para separar por comas, respetando los textos largos con comillas
-                    const columnas = fila.match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g) || fila.split(',');
-                    
-                    if (columnas.length >= 2) {
-                        // Limpiamos las comillas que Excel añade automáticamente a los textos largos
-                        const identificador = columnas[0].replace(/^"|"$/g, '').trim();
-                        const contenido = columnas[1].replace(/^"|"$/g, '').trim().replace(/""/g, '"');
-                        const fuente = columnas[2] ? columnas[2].replace(/^"|"$/g, '').trim() : '';
-                        const tamano = columnas[3] ? columnas[3].replace(/^"|"$/g, '').trim() : '';
+    <section id="contacto" class="section-container">
+        <h2>Contacto</h2>
+        <div class="contacto-wrapper" id="contacto-wrapper">
+            <form class="contacto-form" id="form-contacto">
+                <input type="text" id="contacto-nombre" name="nombre" placeholder="Nombre completo" required>
+                <input type="email" id="contacto-email" name="email" placeholder="Correo electrónico" required>
+                <textarea id="contacto-mensaje" name="mensaje" placeholder="Déjanos tu mensaje o requerimiento" rows="5" required></textarea>
+                <button type="submit" class="btn-submit" id="btn-contacto-submit">Enviar Mensaje</button>
+            </form>
+        </div>
+    </section>
 
-                        // Buscamos en el HTML si existe algún elemento con este identificador exacto de la Columna A
-                        const elementoHtml = document.querySelector(`[data-webtext="${identificador}"]`);
-                        
-                        if (elementoHtml) {
-                            // 1. Inyectamos el texto real de la Columna B
-                            elementoHtml.innerHTML = contenido;
-                            
-                            // 2. Si definiste tipografía en la Columna C, la aplicamos dinámicamente
-                            if (fuente) {
-                                elementoHtml.style.fontFamily = fuente;
-                            }
-                            
-                            // 3. Si definiste tamaño en la Columna D, lo aplicamos dinámicamente
-                            if (tamano) {
-                                elementoHtml.style.fontSize = tamano;
-                            }
-                        }
-                    }
-                }
-                console.log("🚀 Textos, fuentes y tamaños sincronizados con OneDrive exitosamente.");
-            })
-            .catch(error => {
-                console.error("⚠️ Nota: La web usará los textos de respaldo locales. Detalle:", error);
-            });
-    }
+    <footer class="main-footer">
+        <p>&copy; 2026 EyV Solutions SpA. Todos los derechos reservados. Desarrollado con excelencia profesional.</p>
+    </footer>
 
-    // Ejecutamos la sincronización de inmediato al cargar la página
-    cargarTextosDesdeOneDrive();
+    <div class="modal-overlay" id="modal-login">
+        <div class="modal-box">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header-logo">
+                <img src="https://raw.githubusercontent.com/eyv-site/EYV-SOLUTIONS/main/logo.png" alt="Logo EyV Solutions" class="modal-logo-img">
+                <h3>Portal Privado de Clientes</h3>
+            </div>
+            <form class="modal-form">
+                <div class="input-group">
+                    <label for="modal-user">Nombre de Usuario</label>
+                    <input type="text" id="modal-user" placeholder="Ej: rut o usuario corporativo" required>
+                </div>
+                <div class="input-group">
+                    <label for="modal-pass">Contraseña de Acceso</label>
+                    <input type="password" id="modal-pass" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn-modal-login">Ingresar al Portal</button>
+                <p class="modal-help-text">¿No posees una cuenta o necesitas soporte técnico? <a href="#contacto" id="link-contacto-desde-modal">Contáctanos aquí</a></p>
+            </form>
+        </div>
+    </div>
 
-
-    // ==========================================================================
-    // 🎠 LÓGICA DEL HERO CAROUSEL (Protegido del Hito 6)
-    // ==========================================================================
-    const slides = document.querySelectorAll('.slide');
-    const prevBtn = document.getElementById('prevSlide');
-    const nextBtn = document.getElementById('nextSlide');
-    let currentSlide = 0;
-    let carouselInterval;
-
-    function showSlide(index) {
-        slides.forEach(slide => slide.classList.remove('active'));
-        slides[index].classList.add('active');
-    }
-
-    function nextSlideFunc() {
-        currentSlide = (currentSlide + 1) % slides.length;
-        showSlide(currentSlide);
-    }
-
-    function prevSlideFunc() {
-        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-        showSlide(currentSlide);
-    }
-
-    if (nextBtn && prevBtn) {
-        nextBtn.addEventListener('click', () => { nextSlideFunc(); resetInterval(); });
-        prevBtn.addEventListener('click', () => { prevSlideFunc(); resetInterval(); });
-    }
-
-    function startInterval() { carouselInterval = setInterval(nextSlideFunc, 5000); }
-    function resetInterval() { clearInterval(carouselInterval); startInterval(); }
-    if (slides.length > 0) { startInterval(); }
-
-
-    // ==========================================================================
-    // 🔐 LÓGICA DEL MODAL ACCESO CLIENTES (Protegido del Hito 6)
-    // ==========================================================================
-    const modal = document.getElementById('modal-login');
-    const btnAcceso = document.getElementById('btn-acceso');
-    const closeX = document.querySelector('.close-modal');
-    const linkContacto = document.getElementById('link-contacto-desde-modal');
-
-    if (btnAcceso && modal) { btnAcceso.addEventListener('click', () => { modal.style.display = 'flex'; }); }
-    if (closeX && modal) { closeX.addEventListener('click', () => { modal.style.display = 'none'; }); }
-    
-    window.addEventListener('click', (e) => {
-        if (modal && e.target === modal) { modal.style.display = 'none'; }
-    });
-
-    if (linkContacto && modal) {
-        linkContacto.addEventListener('click', () => { modal.style.display = 'none'; });
-    }
-
-
-    // ==========================================================================
-    // 📩 FUNCIONALIDAD DE CONTACTO REAL CON ENLACE FORMSPREE (Protegido del Hito 6)
-    // ==========================================================================
-    const formContacto = document.getElementById('form-contacto');
-    const contactoWrapper = document.getElementById('contacto-wrapper');
-    const urlFormspree = "https://formspree.io/f/mjgddzrn"; 
-
-    const estructuraOriginalFormulario = `
-        <form class="contacto-form" id="form-contacto">
-            <input type="text" id="contacto-nombre" name="nombre" placeholder="Nombre completo" required>
-            <input type="email" id="contacto-email" name="email" placeholder="Correo electrónico" required>
-            <textarea id="contacto-mensaje" name="mensaje" placeholder="Déjanos tu mensaje o requerimiento" rows="5" required></textarea>
-            <button type="submit" class="btn-submit" id="btn-contacto-submit">Enviar Mensaje</button>
-        </form>
-    `;
-
-    function activarLogicaFormulario() {
-        const formularioActual = document.getElementById('form-contacto');
-        const botonActual = document.getElementById('btn-contacto-submit');
-
-        if (formularioActual && contactoWrapper) {
-            formularioActual.addEventListener('submit', function(e) {
-                e.preventDefault();
-
-                const nombre = document.getElementById('contacto-nombre');
-                const email = document.getElementById('contacto-email');
-                const mensaje = document.getElementById('contacto-mensaje');
-                let formValido = true;
-
-                [nombre, email, mensaje].forEach(campo => campo.classList.remove('error-field'));
-
-                if (!nombre.value.trim()) { nombre.classList.add('error-field'); formValido = false; }
-                if (!email.value.trim() || !email.value.includes('@')) { email.classList.add('error-field'); formValido = false; }
-                if (!mensaje.value.trim()) { mensaje.classList.add('error-field'); formValido = false; }
-
-                if (formValido) {
-                    botonActual.disabled = true;
-                    botonActual.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
-
-                    const datosFormulario = new FormData();
-                    datosFormulario.append('Nombre', nombre.value);
-                    datosFormulario.append('Correo', email.value);
-                    datosFormulario.append('Mensaje', mensaje.value);
-
-                    fetch(urlFormspree, {
-                        method: 'POST',
-                        body: datosFormulario,
-                        headers: { 'Accept': 'application/json' }
-                    })
-                    .then(response => {
-                        if (response.ok) {
-                            contactoWrapper.innerHTML = `
-                                <div class="success-message-box">
-                                    <div class="success-icon"><i class="fas fa-check-circle"></i></div>
-                                    <h3>¡Mensaje recibido con éxito!</h3>
-                                    <p>Nos pondremos en contacto contigo a la brevedad para abordar tus requerimientos con total profesionalismo.</p>
-                                    <p style="margin-top: 10px; font-weight: 600; color: #3384b3;">Muchas gracias por escribir a EyV Solutions.</p>
-                                </div>
-                            `;
-                        } else {
-                            throw new Error('Error en el servidor');
-                        }
-                    })
-                    .catch(error => {
-                        botonActual.disabled = false;
-                        botonActual.innerHTML = 'Enviar Mensaje';
-                        alert('Hubo un inconveniente de conexión. Por favor, inténtalo nuevamente.');
-                    });
-                }
-            });
-
-            const inputs = formularioActual.querySelectorAll('input, textarea');
-            inputs.forEach(input => {
-                input.addEventListener('input', () => {
-                    if (input.value.trim()) input.classList.remove('error-field');
-                });
-            });
-        }
-    }
-
-    if (formContacto) { activarLogicaFormulario(); }
-
-    const enlacesContactoMenu = document.querySelectorAll('a[href="#contacto"]');
-    enlacesContactoMenu.forEach(enlace => {
-        enlace.addEventListener('click', () => {
-            const formularioExiste = document.getElementById('form-contacto');
-            if (!formularioExiste && contactoWrapper) {
-                contactoWrapper.innerHTML = estructuraOriginalFormulario;
-                activarLogicaFormulario();
-            }
-        });
-    });
-});
+    <script src="script.js"></script>
+</body>
+</html>
