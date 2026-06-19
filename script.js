@@ -35,14 +35,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // ==========================================================================
-    // 🔐 LÓGICA DEL MODAL ACCESO CLIENTES
+    // 🔐 LÓGICA DEL MODAL ACCESO CLIENTES (Optimizado para Google Sheets)
     // ==========================================================================
     const modal = document.getElementById('modal-login');
     const btnAcceso = document.getElementById('btn-acceso');
     const closeX = document.querySelector('.close-modal');
     const linkContacto = document.getElementById('link-contacto-desde-modal');
 
-    if (btnAcceso && modal) { btnAcceso.addEventListener('click', () => { modal.style.display = 'flex'; }); }
+    // Cambiado a 'block' para evitar conflictos de renderizado con el backend inyectado
+    if (btnAcceso && modal) { btnAcceso.addEventListener('click', () => { modal.style.display = 'block'; }); }
     if (closeX && modal) { closeX.addEventListener('click', () => { modal.style.display = 'none'; }); }
     
     window.addEventListener('click', (e) => {
