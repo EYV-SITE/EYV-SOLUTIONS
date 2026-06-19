@@ -1,83 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
-    
-    // ==========================================================================
-    // 🌐 SINCRONIZACIÓN BLINDADA CON EXCEL ONEDRIVE (NATIVA)
-    // ==========================================================================
-    
-    // Enlace de descarga directa oficial de tu archivo
-    const urlOneDriveExcel = "https://onedrive.live.com/download?resid=FA856147E6BB0CF7&authkey=!IDDye3r7-wtHQYjL&em=2&app=Excel";
-
-    function cargarTextosDesdeOneDrive() {
-        fetch(urlOneDriveExcel)
-            .then(response => {
-                if (!response.ok) throw new Error("No se pudo conectar con OneDrive");
-                return response.text();
-            })
-            .then(data => {
-                // Separamos por líneas limpias
-                const lineas = data.split(/\r?\n/);
-                
-                lineas.forEach((linea, index) => {
-                    // Ignoramos la fila de encabezados (fila 1)
-                    if (index === 0 || !linea.trim()) return;
-
-                    // Procesamiento avanzado para extraer columnas ignorando comas internas de los textos
-                    let columnas = [];
-                    let dentroDeComillas = false;
-                    let celdaActual = "";
-
-                    for (let i = 0; i < linea.length; i++) {
-                        let caracter = linea[i];
-                        if (caracter === '"') {
-                            dentroDeComillas = !dentroDeComillas;
-                        } else if (caracter === ',' && !dentroDeComillas) {
-                            columnas.push(celdaActual.trim());
-                            celdaActual = "";
-                        } else {
-                            celdaActual += caracter;
-                        }
-                    }
-                    columnas.push(celdaActual.trim());
-
-                    // Si la fila tiene al menos Identificador y Contenido
-                    if (columnas.length >= 2) {
-                        const identificador = columnas[0].replace(/^"|"$/g, '').trim();
-                        let contenido = columnas[1].replace(/^"|"$/g, '').trim().replace(/""/g, '"');
-                        const fuente = columnas[2] ? columnas[2].replace(/^"|"$/g, '').trim() : '';
-                        const tamano = columnas[3] ? columnas[3].replace(/^"|"$/g, '').trim() : '';
-
-                        // Buscamos el elemento correspondiente en el HTML
-                        const elementoHtml = document.querySelector(`[data-webtext="${identificador}"]`);
-                        
-                        if (elementoHtml && contenido) {
-                            // Inyectamos el texto limpio de forma segura sin romper estructuras HTML
-                            elementoHtml.textContent = contenido;
-                            
-                            // Aplicamos los estilos de la planilla si existen
-                            if (fuente && fuente !== "") {
-                                elementoHtml.style.fontFamily = fuente;
-                            }
-                            if (tamano && tamano !== "") {
-                                // Forzamos el uso de punto decimal en la web por si acaso
-                                let tamanoLimpio = tamano.replace(',', '.');
-                                elementoHtml.style.fontSize = tamanoLimpio;
-                            }
-                        }
-                    }
-                });
-                console.log("🚀 Sincronización con OneDrive completada con éxito.");
-            })
-            .catch(error => {
-                console.error("⚠️ Usando textos de respaldo locales. Motivo:", error);
-            });
-    }
-
-    // Ejecutar carga de textos
-    cargarTextosDesdeOneDrive();
-
 
     // ==========================================================================
-    // 🎠 LÓGICA DEL HERO CAROUSEL (Protegido del Hito 6)
+    // 🎠 LÓGICA DEL HERO CAROUSEL
     // ==========================================================================
     const slides = document.querySelectorAll('.slide');
     const prevBtn = document.getElementById('prevSlide');
@@ -111,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // ==========================================================================
-    // 🔐 LÓGICA DEL MODAL ACCESO CLIENTES (Protegido del Hito 6)
+    // 🔐 LÓGICA DEL MODAL ACCESO CLIENTES
     // ==========================================================================
     const modal = document.getElementById('modal-login');
     const btnAcceso = document.getElementById('btn-acceso');
@@ -131,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // ==========================================================================
-    // 📩 FUNCIONALIDAD DE CONTACTO REAL CON ENLACE FORMSPREE (Protegido del Hito 6)
+    // 📩 FUNCIONALIDAD DE CONTACTO REAL CON ENLACE FORMSPREE
     // ==========================================================================
     const formContacto = document.getElementById('form-contacto');
     const contactoWrapper = document.getElementById('contacto-wrapper');
