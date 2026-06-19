@@ -1,7 +1,83 @@
 document.addEventListener('DOMContentLoaded', () => {
     
     // ==========================================================================
-    // LÓGICA DEL HERO CAROUSEL (Mantenida intacta)
+    // 🌐 SINCRONIZACIÓN BLINDADA CON EXCEL ONEDRIVE (NATIVA)
+    // ==========================================================================
+    
+    // Enlace de descarga directa oficial de tu archivo
+    const urlOneDriveExcel = "https://onedrive.live.com/download?resid=FA856147E6BB0CF7&authkey=!IDDye3r7-wtHQYjL&em=2&app=Excel";
+
+    function cargarTextosDesdeOneDrive() {
+        fetch(urlOneDriveExcel)
+            .then(response => {
+                if (!response.ok) throw new Error("No se pudo conectar con OneDrive");
+                return response.text();
+            })
+            .then(data => {
+                // Separamos por líneas limpias
+                const lineas = data.split(/\r?\n/);
+                
+                lineas.forEach((linea, index) => {
+                    // Ignoramos la fila de encabezados (fila 1)
+                    if (index === 0 || !linea.trim()) return;
+
+                    // Procesamiento avanzado para extraer columnas ignorando comas internas de los textos
+                    let columnas = [];
+                    let dentroDeComillas = false;
+                    let celdaActual = "";
+
+                    for (let i = 0; i < linea.length; i++) {
+                        let caracter = linea[i];
+                        if (caracter === '"') {
+                            dentroDeComillas = !dentroDeComillas;
+                        } else if (caracter === ',' && !dentroDeComillas) {
+                            columnas.push(celdaActual.trim());
+                            celdaActual = "";
+                        } else {
+                            celdaActual += caracter;
+                        }
+                    }
+                    columnas.push(celdaActual.trim());
+
+                    // Si la fila tiene al menos Identificador y Contenido
+                    if (columnas.length >= 2) {
+                        const identificador = columnas[0].replace(/^"|"$/g, '').trim();
+                        let contenido = columnas[1].replace(/^"|"$/g, '').trim().replace(/""/g, '"');
+                        const fuente = columnas[2] ? columnas[2].replace(/^"|"$/g, '').trim() : '';
+                        const tamano = columnas[3] ? columnas[3].replace(/^"|"$/g, '').trim() : '';
+
+                        // Buscamos el elemento correspondiente en el HTML
+                        const elementoHtml = document.querySelector(`[data-webtext="${identificador}"]`);
+                        
+                        if (elementoHtml && contenido) {
+                            // Inyectamos el texto limpio de forma segura sin romper estructuras HTML
+                            elementoHtml.textContent = contenido;
+                            
+                            // Aplicamos los estilos de la planilla si existen
+                            if (fuente && fuente !== "") {
+                                elementoHtml.style.fontFamily = fuente;
+                            }
+                            if (tamano && tamano !== "") {
+                                // Forzamos el uso de punto decimal en la web por si acaso
+                                let tamanoLimpio = tamano.replace(',', '.');
+                                elementoHtml.style.fontSize = tamanoLimpio;
+                            }
+                        }
+                    }
+                });
+                console.log("🚀 Sincronización con OneDrive completada con éxito.");
+            })
+            .catch(error => {
+                console.error("⚠️ Usando textos de respaldo locales. Motivo:", error);
+            });
+    }
+
+    // Ejecutar carga de textos
+    cargarTextosDesdeOneDrive();
+
+
+    // ==========================================================================
+    // 🎠 LÓGICA DEL HERO CAROUSEL (Protegido del Hito 6)
     // ==========================================================================
     const slides = document.querySelectorAll('.slide');
     const prevBtn = document.getElementById('prevSlide');
@@ -11,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function showSlide(index) {
         slides.forEach(slide => slide.classList.remove('active'));
-        slides[index].classList.add('active');
+        if(slides[index]) slides[index].classList.add('active');
     }
 
     function nextSlideFunc() {
@@ -25,73 +101,42 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (nextBtn && prevBtn) {
-        nextBtn.addEventListener('click', () => {
-            nextSlideFunc();
-            resetInterval();
-        });
-        prevBtn.addEventListener('click', () => {
-            prevSlideFunc();
-            resetInterval();
-        });
+        nextBtn.addEventListener('click', () => { nextSlideFunc(); resetInterval(); });
+        prevBtn.addEventListener('click', () => { prevSlideFunc(); resetInterval(); });
     }
 
-    function startInterval() {
-        carouselInterval = setInterval(nextSlideFunc, 5000);
-    }
+    function startInterval() { carouselInterval = setInterval(nextSlideFunc, 5000); }
+    function resetInterval() { clearInterval(carouselInterval); startInterval(); }
+    if (slides.length > 0) { startInterval(); }
 
-    function resetInterval() {
-        clearInterval(carouselInterval);
-        startInterval();
-    }
-
-    if (slides.length > 0) {
-        startInterval();
-    }
 
     // ==========================================================================
-    // LÓGICA DEL MODAL ACCESO CLIENTES (Mantenida intacta)
+    // 🔐 LÓGICA DEL MODAL ACCESO CLIENTES (Protegido del Hito 6)
     // ==========================================================================
     const modal = document.getElementById('modal-login');
     const btnAcceso = document.getElementById('btn-acceso');
     const closeX = document.querySelector('.close-modal');
     const linkContacto = document.getElementById('link-contacto-desde-modal');
 
-    if (btnAcceso && modal) {
-        btnAcceso.addEventListener('click', () => {
-            modal.style.display = 'flex';
-        });
-    }
-
-    if (closeX && modal) {
-        closeX.addEventListener('click', () => {
-            modal.style.display = 'none';
-        });
-    }
-
+    if (btnAcceso && modal) { btnAcceso.addEventListener('click', () => { modal.style.display = 'flex'; }); }
+    if (closeX && modal) { closeX.addEventListener('click', () => { modal.style.display = 'none'; }); }
+    
     window.addEventListener('click', (e) => {
-        if (modal && e.target === modal) {
-            modal.style.display = 'none';
-        }
+        if (modal && e.target === modal) { modal.style.display = 'none'; }
     });
 
     if (linkContacto && modal) {
-        linkContacto.addEventListener('click', () => {
-            modal.style.display = 'none';
-        });
+        linkContacto.addEventListener('click', () => { modal.style.display = 'none'; });
     }
 
 
     // ==========================================================================
-    // FUNCIONALIDAD DE CONTACTO INTEGRADA CON ENVÍO REAL (FORMSPREE)
+    // 📩 FUNCIONALIDAD DE CONTACTO REAL CON ENLACE FORMSPREE (Protegido del Hito 6)
     // ==========================================================================
     const formContacto = document.getElementById('form-contacto');
     const contactoWrapper = document.getElementById('contacto-wrapper');
-    const btnSubmit = document.getElementById('btn-contacto-submit');
-    
-    // Tu Endpoint real verificado desde tu panel de control
     const urlFormspree = "https://formspree.io/f/mjgddzrn"; 
 
-    // Estructura limpia para reconstrucción dinámica al navegar
     const estructuraOriginalFormulario = `
         <form class="contacto-form" id="form-contacto">
             <input type="text" id="contacto-nombre" name="nombre" placeholder="Nombre completo" required>
@@ -107,14 +152,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (formularioActual && contactoWrapper) {
             formularioActual.addEventListener('submit', function(e) {
-                e.preventDefault(); // Evita recarga o parpadeos
+                e.preventDefault();
 
                 const nombre = document.getElementById('contacto-nombre');
                 const email = document.getElementById('contacto-email');
                 const mensaje = document.getElementById('contacto-mensaje');
                 let formValido = true;
 
-                // Reset de alertas visuales
                 [nombre, email, mensaje].forEach(campo => campo.classList.remove('error-field'));
 
                 if (!nombre.value.trim()) { nombre.classList.add('error-field'); formValido = false; }
@@ -122,27 +166,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (!mensaje.value.trim()) { mensaje.classList.add('error-field'); formValido = false; }
 
                 if (formValido) {
-                    // Coloca el botón en estado de carga visual
                     botonActual.disabled = true;
                     botonActual.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
 
-                    // Empaqueta los datos exactamente como Formspree los requiere
                     const datosFormulario = new FormData();
                     datosFormulario.append('Nombre', nombre.value);
                     datosFormulario.append('Correo', email.value);
                     datosFormulario.append('Mensaje', mensaje.value);
 
-                    // Envío asíncrono seguro a producción
                     fetch(urlFormspree, {
                         method: 'POST',
                         body: datosFormulario,
-                        headers: {
-                            'Accept': 'application/json'
-                        }
+                        headers: { 'Accept': 'application/json' }
                     })
                     .then(response => {
                         if (response.ok) {
-                            // Muestra la tarjeta de éxito corporativo aprobada
                             contactoWrapper.innerHTML = `
                                 <div class="success-message-box">
                                     <div class="success-icon"><i class="fas fa-check-circle"></i></div>
@@ -156,7 +194,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     })
                     .catch(error => {
-                        // Resguardo por si falla la red del usuario externo
                         botonActual.disabled = false;
                         botonActual.innerHTML = 'Enviar Mensaje';
                         alert('Hubo un inconveniente de conexión. Por favor, inténtalo nuevamente.');
@@ -164,7 +201,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
 
-            // Limpieza inmediata del campo rojo mientras se corrige el texto
             const inputs = formularioActual.querySelectorAll('input, textarea');
             inputs.forEach(input => {
                 input.addEventListener('input', () => {
@@ -174,12 +210,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Inicialización del script
-    if (formContacto) {
-        activarLogicaFormulario();
-    }
+    if (formContacto) { activarLogicaFormulario(); }
 
-    // Listener para resetear la sección cuando navegan de vuelta a CONTACTO
     const enlacesContactoMenu = document.querySelectorAll('a[href="#contacto"]');
     enlacesContactoMenu.forEach(enlace => {
         enlace.addEventListener('click', () => {
